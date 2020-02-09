@@ -13,10 +13,10 @@ const createError  = require('http-errors');
 require('./config/db.config');
 const session = require('./config/session.config');
 const cors    = require('./config/cors.config');
-const router = require('./config/routes');
+const router  = require('./config/routes');
 
 const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+const debug    = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 // Express configuration
 const app = express();
