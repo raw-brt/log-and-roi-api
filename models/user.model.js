@@ -27,7 +27,8 @@ const userSchema = new mongoose.Schema({
   validated: {
     type: Boolean,
     default: true
-  }
+  }, 
+  projects: [mongoose.Schema.Types.ObjectId]
 }, {
   timestamps: true,
   toJSON: {

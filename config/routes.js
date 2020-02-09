@@ -1,7 +1,9 @@
-const express         = require('express');
-const router          = express.Router();
-const authMiddleware  = require('../middlewares/auth.middleware');
-const usersController = require('../controllers/users.controller');
+const express            = require('express');
+const router             = express.Router();
+const authMiddleware     = require('../middlewares/auth.middleware');
+const usersController    = require('../controllers/users.controller');
+const projectsController = require('../controllers/projects.controller');
+const logsController     = require('../controllers/logs.controller');
 
 // Access routes
 router.post('/login', authMiddleware.isNotAuthenticated, usersController.doLogin);
@@ -14,15 +16,15 @@ router.patch('/users/:username', authMiddleware.isAuthenticated, usersController
 router.delete('/users/:username', authMiddleware.isAuthenticated, usersController.delete);
 
 // Project routes
-router.get('/projects/:username', authMiddleware.isAuthenticated, projectsController.index);
+router.get('/projects/:username', authMiddleware.isAuthenticated, projectsController.read);
 router.post('/projects/:username/new', authMiddleware.isAuthenticated, projectsController.create);
 router.patch('/projects/:username/:projectid', authMiddleware.isAuthenticated, projectsController.update);
 router.delete('projects/:username/:projectid', authMiddleware.isAuthenticated, projectsController.delete);
 
 // Log routes
-router.get('/projects/:projectid', authMiddleware.isAuthenticated, logController.index);
-router.post('/projects/:projectid/new', authMiddleware.isAuthenticated, logController.create);
-router.patch('/projects/:projectid/:logid', authMiddleware.isAuthenticated, logController.update);
-router.delete('/projects/:projectid/:logid', authMiddleware.isAuthenticated, logController.delete);  
+router.get('/projects/:projectid', authMiddleware.isAuthenticated, logsController.read);
+router.post('/projects/:projectid/new', authMiddleware.isAuthenticated, logsController.create);
+router.patch('/projects/:projectid/:logid', authMiddleware.isAuthenticated, logsController.update);
+router.delete('/projects/:projectid/:logid', authMiddleware.isAuthenticated, logsController.delete);  
 
 module.exports = router;
