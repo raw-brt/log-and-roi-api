@@ -3,9 +3,9 @@ const createError = require('http-errors');
 
 module.exports.create = (req, res, next) => {
   const user = new User({
-    username = req.body.username,
-    email    = req.body.email,
-    password = req.body.password
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
   })
 
   user.save()
@@ -27,7 +27,7 @@ module.exports.profile = (req, res, next) => {
 }
 
 module.exports.update = (req, res, next) => {
-  User.findByIdAndUpdate(req.params.id, req.body)
+  User.findByIdAndUpdate(req.params.userId, req.body)
     .then(user => {
       if (user) {
         res.json(user);
@@ -39,7 +39,7 @@ module.exports.update = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  User.findByIdAndDelete(req.params.id)
+  User.findByIdAndDelete(req.params.userId)
     .then(user => {
       if (user) {
         res.status(204).json();

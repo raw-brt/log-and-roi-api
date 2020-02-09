@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session);
-app.use(passportConfig);
+// app.use(passportConfig);
 app.use(bodyParser.json());
 app.use('/', router);
 
@@ -62,10 +62,6 @@ app.use((error, req, res, next) => {
   res.json(data);
 });
 
-// Listen on provided port
-const port = normalizePort(process.env.PORT || '3000');
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
 // Normalize a port into a number, string or false
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -83,6 +79,9 @@ const normalizePort = val => {
   return false;
 }
 
+// Listen on provided port
+const port = normalizePort(process.env.PORT || '3000');
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // default value for title local
 app.locals.title = 'Log and ROI';

@@ -3,8 +3,8 @@ const createError = require('http-errors');
 
 module.exports.create = (req, res, next) => {
   const project = new Project({
-    projectName = req.body.projectName,
-    costPerHour = req.body.costPerHour
+    projectName: req.body.projectName,
+    costPerHour: req.body.costPerHour
   });
 
   project.save()
