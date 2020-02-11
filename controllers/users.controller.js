@@ -27,7 +27,7 @@ module.exports.profile = (req, res, next) => {
 }
 
 module.exports.update = (req, res, next) => {
-  User.findByIdAndUpdate(req.params.userId, req.body)
+  User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
     .then(user => {
       if (user) {
         res.json(user);

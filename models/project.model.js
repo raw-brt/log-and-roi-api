@@ -16,7 +16,8 @@ const projectSchema = new mongoose.Schema({
   },
     totalCost: Number,
     roi: Number,
-    logs: [mongoose.Schema.Types.ObjectId]
+    logs: [mongoose.Schema.Types.ObjectId],
+    owner: mongoose.Schema.Types.ObjectId
 }, { timestamps: true });
 
 const Project = mongoose.model('Project', projectSchema);

@@ -1,10 +1,13 @@
 const Project     = require('../models/project.model');
+// const User        = require('../models/user.model');
 const createError = require('http-errors');
 
 module.exports.create = (req, res, next) => {
+  
   const project = new Project({
     projectName: req.body.projectName,
-    costPerHour: req.body.costPerHour
+    costPerHour: req.body.costPerHour,
+    owner: req.params.userId
   });
 
   project.save()
@@ -15,6 +18,13 @@ module.exports.create = (req, res, next) => {
         throw createError(404, 'Project not found');
       }
     })
+    // .then(project => {
+    //   if (project) {
+    //     User.findByIdAndUpdate(req.params.userId, { projects: projects.push(project.id) }, { new: true })
+    //   } else {
+    //     throw createError(404, `Couldn\'t update ${owner} project list`)
+    //   }
+    // })
     .catch(next);
 }
 
@@ -33,7 +43,7 @@ module.exports.read = (req, res, next) => {
 }
 
 module.exports.update = (req, res, next) => {
-  Project.findByIdAndUpdate(req.params.projectid, req.body)
+  Project.findByIdAndUpdate(req.params.projectId, req.body, { new: true })
     .then(project => {
       if (project) {
         res.json(project);

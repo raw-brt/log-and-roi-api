@@ -10,16 +10,16 @@ router.post('/login', authMiddleware.isNotAuthenticated, usersController.doLogin
 router.post('/logout', authMiddleware.isAuthenticated, usersController.logout);
 
 // User routes
-router.post('/users', authMiddleware.isNotAuthenticated, usersController.create);
-router.get('/users/:userId', authMiddleware.isAuthenticated, usersController.profile);
-router.patch('/users/:userId', authMiddleware.isAuthenticated, usersController.update);
-router.post('/users/:userId', authMiddleware.isAuthenticated, usersController.delete);
+router.get('/users/:userId', usersController.profile);
+router.post('/users', usersController.create);
+router.patch('/users/:userId', usersController.update);
+router.delete('/users/:userId', usersController.delete);
 
 // Project routes
-router.get('/projects/:userId', authMiddleware.isAuthenticated, projectsController.read);
-router.post('/projects/:userId/new', authMiddleware.isAuthenticated, projectsController.create);
-router.patch('/projects/:userId/:projectId', authMiddleware.isAuthenticated, projectsController.update);
-router.delete('projects/:userId/:projectId', authMiddleware.isAuthenticated, projectsController.delete);
+router.get('/:userId/projects/', projectsController.read);
+router.post('/:userId/projects/new', projectsController.create);
+router.patch('/projects/:projectId', projectsController.update);
+router.delete('/projects/:projectId', projectsController.delete);
 
 // Log routes
 // router.get('/projects/:projectid', authMiddleware.isAuthenticated, logsController.read);
