@@ -29,9 +29,8 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.read = (req, res, next) => {
-  const user = req.params.id
   
-  Project.find(user.projects)
+  Project.find({ owner: req.params.userId })
     .then(projects => {
       if (projects) {
         res.json(projects);
