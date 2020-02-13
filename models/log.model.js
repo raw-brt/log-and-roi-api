@@ -15,7 +15,12 @@ const logSchema = new mongoose.Schema({
   finishedAt: {
     type: Date,
     default: null
-  }
+  },
+  cost: {
+    type: Number,
+    default: 0
+  },
+  parentProject: mongoose.Schema.Types.ObjectId
 }, { timestamps: true });
 
 const Log = mongoose.model('Log', logSchema);

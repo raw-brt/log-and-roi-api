@@ -22,9 +22,10 @@ router.patch('/projects/:projectId', projectsController.update);
 router.delete('/projects/:projectId', projectsController.delete);
 
 // Log routes
-// router.get('/projects/:projectid', authMiddleware.isAuthenticated, logsController.read);
-// router.post('/projects/:projectid/new', authMiddleware.isAuthenticated, logsController.create);
-// router.patch('/projects/:projectid/:logid', authMiddleware.isAuthenticated, logsController.update);
-// router.delete('/projects/:projectid/:logid', authMiddleware.isAuthenticated, logsController.delete);  
+router.get('/:projectId/logs', logsController.read);
+router.post('/:projectId/logs/new', logsController.create);
+router.patch('/logs/:logId/update', logsController.update);
+router.patch('/logs/:logId/status', logsController.updateStatus);
+router.delete('/logs/:logId/delete', logsController.delete);
 
 module.exports = router;

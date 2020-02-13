@@ -16,7 +16,6 @@ const projectSchema = new mongoose.Schema({
   },
     totalCost: Number,
     roi: Number,
-    logs: [mongoose.Schema.Types.ObjectId],
     owner: mongoose.Schema.Types.ObjectId
 }, { timestamps: true });
 
