@@ -18,13 +18,6 @@ module.exports.create = (req, res, next) => {
         throw createError(404, 'Project not found');
       }
     })
-    // .then(project => {
-    //   if (project) {
-    //     User.findByIdAndUpdate(req.params.userId, { projects: projects.push(project.id) }, { new: true })
-    //   } else {
-    //     throw createError(404, `Couldn\'t update ${owner} project list`)
-    //   }
-    // })
     .catch(next);
 }
 
