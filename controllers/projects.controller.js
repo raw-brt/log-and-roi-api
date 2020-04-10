@@ -1,9 +1,7 @@
 const Project     = require('../models/project.model');
-// const User        = require('../models/user.model');
 const createError = require('http-errors');
 
 module.exports.create = (req, res, next) => {
-  
   const project = new Project({
     projectName: req.body.projectName,
     costPerHour: req.body.costPerHour,
@@ -22,10 +20,10 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.read = (req, res, next) => {
-  
   Project.find({ owner: req.params.userId })
     .then(projects => {
       if (projects) {
+        console.log('PROJECTS', projects)
         res.json(projects);
       } else {
         throw createError(404, 'Projects not found')

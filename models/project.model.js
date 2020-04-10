@@ -19,6 +19,7 @@ const projectSchema = new mongoose.Schema({
     owner: mongoose.Schema.Types.ObjectId
 }, { timestamps: true });
 
+
 const Project = mongoose.model('Project', projectSchema);
 
 module.exports = Project;

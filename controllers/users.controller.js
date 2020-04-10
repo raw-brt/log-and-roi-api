@@ -14,7 +14,6 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.profile = (req, res, next) => {
-
   User.findOne({ username: req.params.username })
     .then(user => {
       if (user) {
@@ -52,6 +51,7 @@ module.exports.delete = (req, res, next) => {
 
 module.exports.doLogin = (req, res, next) => {
   const { email, password } = req.body;
+  console.log(email);
 
   if (!email || !password) {
     throw createError(400, 'Missed credentials');
