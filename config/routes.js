@@ -17,6 +17,7 @@ router.delete('/users/:userId', usersController.delete);
 // Project routes
 router.post('/:userId/projects/new', projectsController.create);
 router.get('/user/:userId/projects', projectsController.read);
+router.get('projects/:projectId', projectsController.detail);
 router.patch('/projects/:projectId', projectsController.update);
 router.delete('/projects/:projectId', projectsController.delete);
 
