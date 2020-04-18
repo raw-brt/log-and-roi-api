@@ -12,10 +12,6 @@ const logSchema = new mongoose.Schema(
       maxlength: [25, "Your log name should have less than fifty characters"],
       trim: true,
     },
-    running: {
-      type: Boolean,
-      default: false,
-    },
     finishedAt: {
       type: Date,
       default: null,
@@ -23,6 +19,10 @@ const logSchema = new mongoose.Schema(
     cost: {
       type: Number,
       default: 0,
+    },
+    duration: {
+      type: Number,
+      default: 0
     },
     parentProject: mongoose.Schema.Types.ObjectId,
   },
