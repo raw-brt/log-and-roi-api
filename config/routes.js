@@ -24,8 +24,7 @@ router.delete('/projects/:projectId', projectsController.delete);
 // Log routes
 router.get('/:projectId/logs', logsController.read);
 router.post('/:projectId/logs/new', logsController.create);
-router.patch('/logs/:logId/update', logsController.update);
-router.patch('/logs/:logId/status', logsController.updateStatus);
+router.patch('/logs/:logId', logsController.update);
 router.delete('/logs/:logId/delete', logsController.delete);
 
 module.exports = router;
