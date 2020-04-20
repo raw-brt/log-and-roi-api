@@ -14,8 +14,8 @@ const projectSchema = new mongoose.Schema({
       default: 0,
       required: [true, 'You have to input a cost per hour']  
   },
-    totalCost: Number,
-    roi: Number,
+    investedTime: Number,
+    investedMoney: Number,
     profit: Number,
     owner: mongoose.Schema.Types.ObjectId
 }, { timestamps: true });
