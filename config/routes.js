@@ -23,6 +23,7 @@ router.delete('/projects/:projectId', projectsController.delete);
 
 // Log routes
 router.get('/:projectId/logs', logsController.read);
+router.get('/:logId/detail', logsController.detail);
 router.post('/:projectId/logs/new', logsController.create);
 router.patch('/logs/:logId', logsController.update);
 router.delete('/logs/:logId/delete', logsController.delete);

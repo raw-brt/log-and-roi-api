@@ -32,6 +32,18 @@ module.exports.read = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.detail = (req, res, next) => {
+  Log.findById(req.params.logId)
+    .then((log) => {
+      if (log) {
+        res.json(log);
+      } else {
+        throw createError(404, 'Log not found')
+      }
+    })
+    .catch(next);
+};
+
 module.exports.update = (req, res, next) => {
   Log.findByIdAndUpdate(req.params.logId, req.body, { new: true })
     .then((log) => {
