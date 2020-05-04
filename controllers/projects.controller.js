@@ -57,10 +57,10 @@ module.exports.update = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  Project.findOneAndDelete(req.params.projectid)
+  Project.findByIdAndDelete(req.params.projectId)
     .then((project) => {
       if (project) {
-        res.status(204).json();
+        res.status(200).json();
       } else {
         throw createError(404, "Project not found");
       }

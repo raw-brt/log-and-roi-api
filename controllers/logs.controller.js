@@ -76,7 +76,7 @@ module.exports.delete = (req, res, next) => {
   Log.findOneAndDelete(req.params.logId)
     .then((log) => {
       if (log) {
-        res.status(204).json();
+        res.status(200).json();
       } else {
         throw createError(404, "Log not found");
       }
