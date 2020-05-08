@@ -8,6 +8,7 @@ const authMiddleware     = require('../middlewares/auth.middleware');
 // Access routes
 router.post('/login', authMiddleware.isNotAuthenticated, usersController.doLogin);
 router.post('/logout', authMiddleware.isAuthenticated, usersController.logout);
+router.get('/users/:token/validate', usersController.validate);
 
 // User routes
 router.get('/users/:username', usersController.profile);
@@ -16,8 +17,7 @@ router.patch('/users/:userId', usersController.update);
 router.delete('/users/:userId', authMiddleware.isAuthenticated, usersController.delete);
 
 // Project routes
-router.post('/:userId/projects/new', authMiddleware.isAuthenticated, projectsController.create);
-router.get('/', authMiddleware.isAuthenticated)
+router.post('/:userId/projects/new', projectsController.create);
 router.get('/user/:userId/projects', authMiddleware.isAuthenticated, projectsController.read);
 router.get('projects/:projectId', authMiddleware.isAuthenticated, projectsController.detail);
 router.patch('/projects/:projectId', authMiddleware.isAuthenticated, projectsController.update);

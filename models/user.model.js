@@ -3,10 +3,14 @@ const bcrypt = require('bcrypt');
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const SALT_WORK_FACTOR = 10;
 
+const generateValidationToken = () => {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, 'Username is required'],
+    required: false,
     minlength: [6, 'Name shoud have 6 characters at least'],
     unique: true,
     trim: true
@@ -26,7 +30,11 @@ const userSchema = new mongoose.Schema({
   },
   validated: {
     type: Boolean,
-    default: true
+    default: false
+  },
+  validateToken: {
+    type: String,
+    default: generateValidationToken
   }, 
   projects: [mongoose.Schema.Types.ObjectId]
 }, {

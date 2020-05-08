@@ -13,6 +13,21 @@ module.exports.create = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.validate = (req, _, next) => {
+  User.findOne({ validateToken: req.params.token })
+    .then(user => {
+      if (user) {
+        user.validated = true
+        user.save()
+          .then(() => res.redirect('http://localhost:3001/login'))
+          .catch(next);
+      } else {
+        res.redirect('http://localhost:3001/signup')
+      }
+    })
+    .catch(next)
+}
+
 module.exports.profile = (req, res, next) => {
   User.findOne({ username: req.params.username })
     .then(user => {
