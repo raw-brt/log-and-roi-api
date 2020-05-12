@@ -8,13 +8,6 @@ const generateValidationToken = () => {
 }
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: false,
-    minlength: [6, 'Name shoud have 6 characters at least'],
-    unique: true,
-    trim: true
-  },
   email: {
     type: String,
     required: [true, 'Email is required'],
@@ -26,11 +19,19 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Password is required'],
-    minlength: [8, 'Password should have 8 characters at least']
+    minlength: [6, 'Password should have 6 characters at least']
   },
+  // username: {
+  //   type: String,
+  //   required: [true, 'Username is required'],
+  //   trim: true,
+  //   unique: [true, 'Username should be unique'],
+  //   minlength: [1, 'Username should have 1 character at least'],
+  //   maxlength: [10, 'Username should have 10 characters max']
+  // },
   validated: {
     type: Boolean,
-    default: false
+    default: true
   },
   validateToken: {
     type: String,

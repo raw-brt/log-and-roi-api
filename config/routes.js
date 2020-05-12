@@ -12,7 +12,7 @@ router.get('/users/:token/validate', usersController.validate);
 
 // User routes
 router.get('/users/:username', usersController.profile);
-router.post('/users', authMiddleware.isNotAuthenticated, usersController.create);
+router.post('/users', usersController.create);
 router.patch('/users/:userId', usersController.update);
 router.delete('/users/:userId', authMiddleware.isAuthenticated, usersController.delete);
 

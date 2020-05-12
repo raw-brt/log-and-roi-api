@@ -1,15 +1,19 @@
 const User        = require('../models/user.model');
+const mailer      = require('../config/mailer.config');
 const createError = require('http-errors');
 
 module.exports.create = (req, res, next) => {
   const user = new User({
-    username: req.body.username,
+    // username: req.body.username,
     email: req.body.email,
     password: req.body.password
   })
 
   user.save()
-    .then(user => res.status(201).json(user))
+    .then(user => {
+      mailer.sendValidateEmail(user)
+      res.status(201).json(user)
+    })
     .catch(next);
 };
 
@@ -29,7 +33,7 @@ module.exports.validate = (req, _, next) => {
 }
 
 module.exports.profile = (req, res, next) => {
-  User.findOne({ username: req.params.username })
+  User.findOne({ email: req.params.email })
     .then(user => {
       if (user) {
         res.json(user);
