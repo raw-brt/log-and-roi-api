@@ -14,7 +14,7 @@ router.get('/users/:token/validate', usersController.validate);
 router.get('/users/:username', usersController.profile);
 router.post('/users', usersController.create);
 router.patch('/users/:userId', usersController.update);
-router.delete('/users/:userId', authMiddleware.isAuthenticated, usersController.delete);
+router.delete('/users/:userId', usersController.delete);
 
 // Project routes
 router.post('/:userId/projects/new', projectsController.create);

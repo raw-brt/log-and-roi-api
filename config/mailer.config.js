@@ -12,11 +12,12 @@ const transporter = nodemailer.createTransport({
 
 module.exports.sendValidateEmail = targetUser => {
   transporter.sendMail({
-    from: `Auth-Example ${user}`,
+    from: `Log and ROI`,
     to: targetUser.email,
-    subject: 'Welcome to Log and ROI',
+    subject: 'Welcome to Log and ROI!',
     html: `
-      <h1>Welcome to Log and ROI</h1>
+      <h4>Welcome to Log and ROI</h4>
+      <p>Please, click the link below to confirm your email and start using Log and ROI</>
       <a href='${APP_HOST}/users/${targetUser.validateToken}/validate'>Click here to confirm account</a>
     `
   })

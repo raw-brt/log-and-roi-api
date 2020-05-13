@@ -4,17 +4,25 @@ const createError = require('http-errors');
 
 module.exports.create = (req, res, next) => {
   const user = new User({
-    // username: req.body.username,
     email: req.body.email,
     password: req.body.password
   })
 
-  user.save()
-    .then(user => {
-      mailer.sendValidateEmail(user)
-      res.status(201).json(user)
+  User.findOne({ email: user.email })
+    .then(existingUser => {
+      if (existingUser) {
+        res.status(400).json({ message: 'Email already registered' })
+      } else {
+        user.save()
+          .then(user => {
+            // Debug validation before deploying with this to production
+            // mailer.sendValidateEmail(user)
+            res.status(201).json(user)
+          })
+        .catch(next);
+      }
     })
-    .catch(next);
+    .catch(error => next(error));
 };
 
 module.exports.validate = (req, _, next) => {
