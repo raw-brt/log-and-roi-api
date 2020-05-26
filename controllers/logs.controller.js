@@ -73,7 +73,7 @@ module.exports.updateStatus = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  Log.findOneAndDelete(req.params.logId)
+  Log.findByIdAndDelete(req.params.logId)
     .then((log) => {
       if (log) {
         res.status(200).json();

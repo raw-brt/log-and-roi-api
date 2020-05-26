@@ -19,7 +19,7 @@ router.delete('/users/:userId', usersController.delete);
 // Project routes
 router.post('/:userId/projects/new', projectsController.create);
 router.get('/user/:userId/projects', authMiddleware.isAuthenticated, projectsController.read);
-router.get('projects/:projectId', authMiddleware.isAuthenticated, projectsController.detail);
+router.get('/projects/:projectId', authMiddleware.isAuthenticated, projectsController.detail);
 router.patch('/projects/:projectId', authMiddleware.isAuthenticated, projectsController.update);
 router.delete('/projects/:projectId', authMiddleware.isAuthenticated, projectsController.delete);
 
@@ -28,6 +28,6 @@ router.get('/:projectId/logs', authMiddleware.isAuthenticated, logsController.re
 router.get('/:logId/detail', authMiddleware.isAuthenticated, logsController.detail);
 router.post('/:projectId/logs/new', authMiddleware.isAuthenticated, logsController.create);
 router.patch('/logs/:logId', authMiddleware.isAuthenticated, logsController.update);
-router.delete('/logs/:logId/delete', authMiddleware.isAuthenticated, logsController.delete);
+router.delete('/logs/:logId/delete', logsController.delete);
 
 module.exports = router;
