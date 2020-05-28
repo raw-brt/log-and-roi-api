@@ -21,14 +21,6 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Password is required'],
     minlength: [6, 'Password should have 6 characters at least']
   },
-  // username: {
-  //   type: String,
-  //   required: [true, 'Username is required'],
-  //   trim: true,
-  //   unique: [true, 'Username should be unique'],
-  //   minlength: [1, 'Username should have 1 character at least'],
-  //   maxlength: [10, 'Username should have 10 characters max']
-  // },
   validated: {
     type: Boolean,
     default: true

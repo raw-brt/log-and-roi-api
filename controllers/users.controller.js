@@ -25,6 +25,28 @@ module.exports.create = (req, res, next) => {
     .catch(error => next(error));
 };
 
+module.exports.update = (req, res, next) => {
+
+  const updatedUser = new User({
+    email: req.body.email,
+    password: req.body.password
+  })
+
+  User.findOne({ email: updatedUser.email })
+    .then(actualUser => {
+      if (actualUser) {
+        res.status(400).json({ message: 'Email already registered' })
+      } else {
+        user.save()
+          .then(user => {
+            res.status(201).json(user)
+          })
+        .catch(next);
+      }
+    })
+    .catch(error => next(error));
+};
+
 module.exports.validate = (req, _, next) => {
   User.findOne({ validateToken: req.params.token })
     .then(user => {
@@ -51,18 +73,6 @@ module.exports.profile = (req, res, next) => {
     })
     .catch(next);
 }
-
-module.exports.update = (req, res, next) => {
-  User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
-    .then(user => {
-      if (user) {
-        res.json(user);
-      } else {
-        throw createError(404, 'User not found');
-      }
-    })
-    .catch(next);
-};
 
 module.exports.delete = (req, res, next) => {
   User.findByIdAndDelete(req.params.userId)
