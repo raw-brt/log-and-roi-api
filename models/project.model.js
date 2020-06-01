@@ -6,7 +6,6 @@ const projectSchema = new mongoose.Schema({
     required: [true, 'Project name is required'],
     minlength: [3, 'Your project should have a name with, at least, three characters'],
     maxlength: [50, 'Your project name should have less than fifty characters'],
-    unique: true,
     trim: true,
   },
     costPerHour: {
